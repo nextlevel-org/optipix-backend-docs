@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: API Documentation
+  version: 1.0.0
+  description: Complete API documentation with external references
+
+servers:
+  - url: http://localhost:3000/v1
+
+paths:
+  # Auth paths
+  /login:
+    $ref: './v1/auth.yaml#/paths/~1login'
+
+  # # Client paths
+  # /customers/{customerId}/clients:
+  #   $ref: './client.yaml#/paths/~1customers~1{customerId}~1clients'
+  # /clients/{clientId}:
+  #   $ref: './client.yaml#/paths/~1clients~1{clientId}'
+  # /clients/{clientId}/change-customer:
+  #   $ref: './client.yaml#/paths/~1clients~1{clientId}~1change-customer'
+
+  # # User paths
+  # /clients/{clientId}/users:
+  #   $ref: './user/user.yaml#/paths/~1clients~1{clientId}~1users'
+  # /users/{userId}:
+  #   $ref: './user/user.yaml#/paths/~1users~1{userId}'
+  # /users/{userId}/change-password:
+  #   $ref: './user/user.yaml#/paths/~1users~1{userId}~1change-password'
+  # /password/forgot:
+  #   $ref: './user/user.yaml#/paths/~1password~1forgot'
+  # /password/reset:
+  #   $ref: './user/user.yaml#/paths/~1password~1reset'
+
+  # # Vehicle paths
+  # /users/{userId}/vehicles:
+  #   $ref: './vehicle.yaml#/paths/~1users~1{userId}~1vehicles'
+  # /users/{userId}/vehicles/{vehicleId}:
+  #   $ref: './vehicle.yaml#/paths/~1users~1{userId}~1vehicles~1{vehicleId}'
+  # /users/{userId}/vin-decode:
+  #   $ref: './decodeVin.yaml#/paths/~1users~1{userId}~1vin-decode'
+
+  # # Vehicle Details paths
+  # /vehicles:
+  #   $ref: './vehicleDetails.yaml#/paths/~1vehicles'
+  # /vehicles/{vehicleId}:
+  #   $ref: './vehicleDetails.yaml#/paths/~1vehicles~1{vehicleId}'
+
+  # # Vehicle Body Type paths
+  # /vehicleBodyTypes:
+  #   $ref: './vehicleBodyType.yaml#/paths/~1vehicleBodyTypes'
+  # /vehicleBodyTypes/{vehicleBodyTypeId}:
+  #   $ref: './vehicleBodyType.yaml#/paths/~1vehicleBodyTypes~1{vehicleBodyTypeId}'
+
+components:
+  schemas:
+    # Auth schemas
+    LoginRequest:
+      $ref: './v1/schemas/auth.yaml#/components/schemas/LoginRequest'
+    LoginResponse:
+      $ref: './v1/schemas/auth.yaml#/components/schemas/LoginResponse'
+    # Required schemas for auth
+    User:
+      $ref: './v1/schemas/user.yaml#/components/schemas/User'
+    UserRole:
+      $ref: './v1/schemas/user.yaml#/components/schemas/UserRole'
+    UserFile:
+      $ref: './v1/schemas/user.yaml#/components/schemas/UserFile'
+
+    # # Client schemas
+    # Client:
+    #   $ref: './client.yaml#/components/schemas/Client'
+    # ClientCreate:
+    #   $ref: './client.yaml#/components/schemas/ClientCreate'
+
+    # # User schemas
+    # User:
+    #   $ref: './user/user.yaml#/components/schemas/User'
+    # UserCreate:
+    #   $ref: './user/user.yaml#/components/schemas/UserCreate'
+
+    # # Vehicle schemas
+    # Vehicle:
+    #   $ref: './vehicle.yaml#/components/schemas/Vehicle'
+    # VehicleCreate:
+    #   $ref: './vehicle.yaml#/components/schemas/VehicleCreate'
+    # VehicleDetails:
+    #   $ref: './vehicleDetails.yaml#/components/schemas/VehicleDetails'
+    # VehicleBodyType:
+    #   $ref: './vehicleBodyType.yaml#/components/schemas/VehicleBodyType'
+
+  responses:
+    BadRequest:
+      $ref: './v1/common/responses.yaml#/responses/BadRequest'
+    NotFound:
+      $ref: './v1/common/responses.yaml#/responses/NotFound'
+    Unauthorized:
+      $ref: './v1/common/responses.yaml#/responses/Unauthorized'
+    Forbidden:
+      $ref: './v1/common/responses.yaml#/responses/Forbidden'
+
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+
+security:
+  - ApiKey: []

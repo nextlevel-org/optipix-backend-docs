@@ -1,0 +1,60 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "1e03a16e-8275-4285-92e4-c80c87085399"
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        name:
+          type: string
+          example: "John Doe"
+        status:
+          type: string
+          enum: [active, inactive]
+          example: "active"
+        roleId:
+          type: string
+          format: uuid
+        role:
+          $ref: '#/components/schemas/UserRole'
+
+    UserRole:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "user"
+        type:
+          type: string
+          example: "notVerified"
+
+    UserFile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        fileId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          example: "profilePicture"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time 

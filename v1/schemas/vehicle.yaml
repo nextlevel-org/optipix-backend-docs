@@ -1,0 +1,67 @@
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        displacement:
+          type: string
+        horsePower:
+          type: string
+        description:
+          type: string
+        bodyType:
+          type: string
+        fuelType:
+          type: string
+        visible:
+          type: boolean
+        features:
+          type: array
+          items:
+            type: string
+        vehicleTypeId:
+          type: string
+          format: uuid
+        vehicleBodyTypeId:
+          type: string
+          format: uuid
+
+    VehicleDetails:
+      type: object
+      properties:
+        brand:
+          type: string
+        model:
+          type: string
+        modelVariant:
+          type: string
+        equipmentLine:
+          type: string
+        modelSeries:
+          type: string
+        vehicleType:
+          type: string
+          enum: [used, employeesCar, classic, preRegistration, demonstration]
+        category:
+          type: string
+          enum: [cabrio, smallCar, estateCar, limousine, sportsCar, offRoad, van, otherCar]
+
+    VehicleBodyType:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        value:
+          type: integer 

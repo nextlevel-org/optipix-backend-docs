@@ -1,0 +1,68 @@
+responses:
+  BadRequest:
+    description: Bad request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "400"
+            message:
+              type: string
+              example: "Bad Request"
+            description:
+              type: string
+              example: "The request could not be processed."
+
+  NotFound:
+    description: Resource not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "404"
+            message:
+              type: string
+              example: "Not Found"
+            description:
+              type: string
+              example: "The requested resource was not found."
+
+  Unauthorized:
+    description: Unauthorized access
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "401"
+            message:
+              type: string
+              example: "Unauthorized"
+            description:
+              type: string
+              example: "Authentication is required to access this resource."
+
+  Forbidden:
+    description: Access forbidden
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "403"
+            message:
+              type: string
+              example: "Forbidden"
+            description:
+              type: string
+              example: "You don't have permission to access this resource." 

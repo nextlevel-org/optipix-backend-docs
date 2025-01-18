@@ -1,0 +1,53 @@
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive]
+        description:
+          type: string
+        icon:
+          type: string
+        email:
+          type: string
+          format: email
+        country:
+          type: string
+        postCode:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        notes:
+          type: string
+        paymentType:
+          type: string
+          enum: [PREPAID, POSTPAID]
+        numberId:
+          type: string
+        settings:
+          $ref: '#/components/schemas/ClientSettings'
+
+    ClientSettings:
+      type: object
+      properties:
+        removeReflectionsEnabled:
+          type: boolean
+        markersEnabled:
+          type: boolean
+        duplicateVehicleEnabled:
+          type: boolean
+        postponedInvoiceEnabled:
+          type: boolean
+        preprocessingEnabled:
+          type: boolean
+        customInvoiceConfig:
+          type: object 

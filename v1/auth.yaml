@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Authentication API
+  version: 1.0.0
+  description: API for user authentication
+servers:
+  - url: http://localhost:3000/v1
+
+paths:
+  /login:
+    post:
+      summary: Login user
+      description: This route is for logging in a user and obtaining an access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/auth.yaml#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/auth.yaml#/components/schemas/LoginResponse'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '401':
+          $ref: './common/responses.yaml#/responses/Unauthorized'
