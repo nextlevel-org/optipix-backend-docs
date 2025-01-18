@@ -21,8 +21,19 @@ components:
           type: string
           example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
         user:
-          $ref: '#/components/schemas/User'
+          $ref: './user.yaml#/components/schemas/User'
         userFiles:
           type: array
           items:
-            $ref: '#/components/schemas/UserFile' 
+            $ref: './user.yaml#/components/schemas/UserFile'
+
+    LoginAsUserRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+          description: "The email of the user." 

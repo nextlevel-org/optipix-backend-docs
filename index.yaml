@@ -11,6 +11,8 @@ paths:
   # Auth paths
   /login:
     $ref: './v1/auth.yaml#/paths/~1login'
+  /users/{userId}/login:
+    $ref: './v1/auth.yaml#/paths/~1users~1{userId}~1login'
 
   # # Client paths
   # /customers/{customerId}/clients:
@@ -59,6 +61,8 @@ components:
       $ref: './v1/schemas/auth.yaml#/components/schemas/LoginRequest'
     LoginResponse:
       $ref: './v1/schemas/auth.yaml#/components/schemas/LoginResponse'
+    LoginAsUserRequest:
+      $ref: './v1/schemas/auth.yaml#/components/schemas/LoginAsUserRequest'
     # Required schemas for auth
     User:
       $ref: './v1/schemas/user.yaml#/components/schemas/User'
