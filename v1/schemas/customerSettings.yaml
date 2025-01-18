@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CustomerSettings:
+      type: object
+      properties:
+        creditsNotificationEnabled:
+          type: boolean
+          example: true
+        creditsNotificationThreshold:
+          type: number
+          example: 30
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2023-03-17T11:57:05.063Z" 

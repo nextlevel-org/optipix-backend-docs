@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Customer API
+  version: 2.0.0
+  description: API for managing customers
+servers:
+  - url: http://localhost:3000/v2
+paths:
+  /customers:
+    get:
+      summary: Get all customers
+      description: This route retrieves all customers.
+      responses:
+        '200':
+          description: Successful retrieval of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/customer.yaml#/components/schemas/Customer'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+
+    post:
+      summary: Create new customer
+      description: This route creates a new customer.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/customer.yaml#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer successfully created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/customer.yaml#/components/schemas/Customer'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+
+  /customers/{customerId}:
+    get:
+      summary: Get customer by ID
+      description: This route retrieves a specific customer.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: The ID of the customer.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '200':
+          description: Successful retrieval of customer
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/customer.yaml#/components/schemas/Customer'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+    patch:
+      summary: Update customer
+      description: This route updates a specific customer.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: The ID of the customer to update.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/customer.yaml#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/customer.yaml#/components/schemas/Customer'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+    delete:
+      summary: Delete customer
+      description: This route deletes a specific customer.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: The ID of the customer to delete.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '204':
+          description: Customer successfully deleted
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'

@@ -1,0 +1,41 @@
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "Customer Name"
+        status:
+          type: string
+          enum: [active, inactive]
+          example: "active"
+        description:
+          type: string
+        icon:
+          type: string
+        email:
+          type: string
+          format: email
+        country:
+          type: string
+        postCode:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        notes:
+          type: string
+        credits:
+          type: number
+          example: 100
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time 

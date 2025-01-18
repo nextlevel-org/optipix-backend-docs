@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: Client API
+  version: 1.0.0
+  description: API for managing clients
+servers:
+  - url: http://localhost:3000/v1
+paths:
+  /customers/{customerId}/clients:
+    post:
+      summary: Create new client
+      description: This route creates a new client for a customer.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: The ID of the customer.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/client.yaml#/components/schemas/Client'
+      responses:
+        '200':
+          description: Successful client creation
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/client.yaml#/components/schemas/Client'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+  /clients/{clientId}:
+    get:
+      summary: Get client by ID
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: The ID of the client.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '200':
+          description: Successful retrieval of client
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/client.yaml#/components/schemas/Client'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+    patch:
+      summary: Update client
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: The ID of the client to update.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/client.yaml#/components/schemas/Client'
+      responses:
+        '200':
+          description: Successful client update
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/client.yaml#/components/schemas/Client'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+    delete:
+      summary: Delete client
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: The ID of the client to delete.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '204':
+          description: Client successfully deleted
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+  /clients/{clientId}/change-customer:
+    patch:
+      summary: Change client's customer
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: The ID of the client.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - toCustomerId
+              properties:
+                toCustomerId:
+                  type: string
+                  format: uuid
+                  example: "2e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '200':
+          description: Customer successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/client.yaml#/components/schemas/Client'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+  

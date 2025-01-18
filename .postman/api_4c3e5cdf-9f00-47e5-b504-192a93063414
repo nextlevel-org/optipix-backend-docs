@@ -15,12 +15,17 @@ rootDirectory = postman/collections
 [config.relations.apiDefinition]
 files[] = {"path":"index.yaml","metaData":{}}
 files[] = {"path":"v1/auth.yaml","metaData":{}}
+files[] = {"path":"v1/client.yaml","metaData":{}}
 files[] = {"path":"v1/common/responses.yaml","metaData":{}}
+files[] = {"path":"v1/customerSettings.yaml","metaData":{}}
 files[] = {"path":"v1/schemas/auth.yaml","metaData":{}}
 files[] = {"path":"v1/schemas/client.yaml","metaData":{}}
+files[] = {"path":"v1/schemas/customerSettings.yaml","metaData":{}}
 files[] = {"path":"v1/schemas/user.yaml","metaData":{}}
 files[] = {"path":"v1/schemas/vehicle.yaml","metaData":{}}
 files[] = {"path":"v1/vehicle.yaml","metaData":{}}
+files[] = {"path":"v2/customer.yaml","metaData":{}}
+files[] = {"path":"v2/schemas/customer.yaml","metaData":{}}
 
 [config.relations.apiDefinition.metaData]
 type = openapi:3

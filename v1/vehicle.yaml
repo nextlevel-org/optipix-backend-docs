@@ -26,14 +26,16 @@ paths:
             schema:
               $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
       responses:
-        '200':
-          description: Successful vehicle creation
+        '201':
+          description: Vehicle successfully created
           content:
             application/json:
               schema:
                 $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
-        '4XX':
+        '400':
           $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
 
     get:
       summary: Get user vehicles
@@ -49,15 +51,15 @@ paths:
             example: "1e03a16e-8275-4285-92e4-c80c87085399"
       responses:
         '200':
-          description: Successful retrieval of user vehicles
+          description: Successful retrieval of vehicles
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
-        '4XX':
-          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
 
   /users/{userId}/vehicles/{vehicleId}:
     get:
@@ -87,8 +89,6 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
-        '4XX':
-          $ref: './common/responses.yaml#/responses/BadRequest'
         '404':
           $ref: './common/responses.yaml#/responses/NotFound'
 
@@ -120,12 +120,12 @@ paths:
               $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
       responses:
         '200':
-          description: Successful vehicle update
+          description: Vehicle successfully updated
           content:
             application/json:
               schema:
                 $ref: './schemas/vehicle.yaml#/components/schemas/Vehicle'
-        '4XX':
+        '400':
           $ref: './common/responses.yaml#/responses/BadRequest'
         '404':
           $ref: './common/responses.yaml#/responses/NotFound'
@@ -151,14 +151,7 @@ paths:
             format: uuid
             example: "7e03a16e-8275-4285-92e4-c80c87085399"
       responses:
-        '200':
-          description: Successful vehicle deletion
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-        '4XX':
-          $ref: './common/responses.yaml#/responses/BadRequest'
+        '204':
+          description: Vehicle successfully deleted
         '404':
           $ref: './common/responses.yaml#/responses/NotFound'

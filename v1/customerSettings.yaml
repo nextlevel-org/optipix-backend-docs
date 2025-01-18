@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Customer Settings API
+  version: 1.0.0
+  description: API for managing customer settings
+servers:
+  - url: http://localhost:3000/v1
+paths:
+  /customers/{customerId}/settings:
+    get:
+      summary: Get Customer Settings
+      description: This route is for retrieving customer settings.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: Mandatory customerId.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '200':
+          description: Successful retrieval of customer settings
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/customerSettings.yaml#/components/schemas/CustomerSettings'
+        '4XX':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'
+
+    patch:
+      summary: Update Customer Settings
+      description: This route is for updating customer settings.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: Mandatory customerId.
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/customerSettings.yaml#/components/schemas/CustomerSettings'
+      responses:
+        '200':
+          description: Successful update of customer settings
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/customerSettings.yaml#/components/schemas/CustomerSettings'
+        '4XX':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound'

@@ -6,6 +6,7 @@ info:
 
 servers:
   - url: http://localhost:3000/v1
+  - url: http://localhost:3000/v2
 
 paths:
   # Auth paths
@@ -14,13 +15,13 @@ paths:
   /users/{userId}/login:
     $ref: './v1/auth.yaml#/paths/~1users~1{userId}~1login'
 
-  # # Client paths
-  # /customers/{customerId}/clients:
-  #   $ref: './client.yaml#/paths/~1customers~1{customerId}~1clients'
-  # /clients/{clientId}:
-  #   $ref: './client.yaml#/paths/~1clients~1{clientId}'
-  # /clients/{clientId}/change-customer:
-  #   $ref: './client.yaml#/paths/~1clients~1{clientId}~1change-customer'
+  # Client paths
+  /customers/{customerId}/clients:
+    $ref: './v1/client.yaml#/paths/~1customers~1{customerId}~1clients'
+  /clients/{clientId}:
+    $ref: './v1/client.yaml#/paths/~1clients~1{clientId}'
+  /clients/{clientId}/change-customer:
+    $ref: './v1/client.yaml#/paths/~1clients~1{clientId}~1change-customer'
 
   # # User paths
   # /clients/{clientId}/users:
@@ -34,13 +35,11 @@ paths:
   # /password/reset:
   #   $ref: './user/user.yaml#/paths/~1password~1reset'
 
-  # # Vehicle paths
-  # /users/{userId}/vehicles:
-  #   $ref: './vehicle.yaml#/paths/~1users~1{userId}~1vehicles'
-  # /users/{userId}/vehicles/{vehicleId}:
-  #   $ref: './vehicle.yaml#/paths/~1users~1{userId}~1vehicles~1{vehicleId}'
-  # /users/{userId}/vin-decode:
-  #   $ref: './decodeVin.yaml#/paths/~1users~1{userId}~1vin-decode'
+  # Vehicle paths
+  /users/{userId}/vehicles:
+    $ref: './v1/vehicle.yaml#/paths/~1users~1{userId}~1vehicles'
+  /users/{userId}/vehicles/{vehicleId}:
+    $ref: './v1/vehicle.yaml#/paths/~1users~1{userId}~1vehicles~1{vehicleId}'
 
   # # Vehicle Details paths
   # /vehicles:
@@ -54,6 +53,16 @@ paths:
   # /vehicleBodyTypes/{vehicleBodyTypeId}:
   #   $ref: './vehicleBodyType.yaml#/paths/~1vehicleBodyTypes~1{vehicleBodyTypeId}'
 
+  # Customer Settings paths
+  /customers/{customerId}/settings:
+    $ref: './v1/customerSettings.yaml#/paths/~1customers~1{customerId}~1settings'
+
+  # V2 Customer paths
+  /v2/customers:
+    $ref: './v2/customer.yaml#/paths/~1customers'
+  /v2/customers/{customerId}:
+    $ref: './v2/customer.yaml#/paths/~1customers~1{customerId}'
+
 components:
   schemas:
     # Auth schemas
@@ -61,8 +70,6 @@ components:
       $ref: './v1/schemas/auth.yaml#/components/schemas/LoginRequest'
     LoginResponse:
       $ref: './v1/schemas/auth.yaml#/components/schemas/LoginResponse'
-    LoginAsUserRequest:
-      $ref: './v1/schemas/auth.yaml#/components/schemas/LoginAsUserRequest'
     # Required schemas for auth
     User:
       $ref: './v1/schemas/user.yaml#/components/schemas/User'
@@ -71,27 +78,27 @@ components:
     UserFile:
       $ref: './v1/schemas/user.yaml#/components/schemas/UserFile'
 
-    # # Client schemas
-    # Client:
-    #   $ref: './client.yaml#/components/schemas/Client'
-    # ClientCreate:
-    #   $ref: './client.yaml#/components/schemas/ClientCreate'
+    # Client schemas
+    Client:
+      $ref: './v1/schemas/client.yaml#/components/schemas/Client'
+    ClientSettings:
+      $ref: './v1/schemas/client.yaml#/components/schemas/ClientSettings'
 
-    # # User schemas
-    # User:
-    #   $ref: './user/user.yaml#/components/schemas/User'
-    # UserCreate:
-    #   $ref: './user/user.yaml#/components/schemas/UserCreate'
+    # Customer Settings schemas
+    CustomerSettings:
+      $ref: './v1/schemas/customerSettings.yaml#/components/schemas/CustomerSettings'
 
-    # # Vehicle schemas
-    # Vehicle:
-    #   $ref: './vehicle.yaml#/components/schemas/Vehicle'
-    # VehicleCreate:
-    #   $ref: './vehicle.yaml#/components/schemas/VehicleCreate'
-    # VehicleDetails:
-    #   $ref: './vehicleDetails.yaml#/components/schemas/VehicleDetails'
-    # VehicleBodyType:
-    #   $ref: './vehicleBodyType.yaml#/components/schemas/VehicleBodyType'
+    # V2 Customer schemas
+    CustomerV2:
+      $ref: './v2/schemas/customer.yaml#/components/schemas/Customer'
+
+    # Vehicle schemas
+    Vehicle:
+      $ref: './v1/schemas/vehicle.yaml#/components/schemas/Vehicle'
+    VehicleDetails:
+      $ref: './v1/schemas/vehicle.yaml#/components/schemas/VehicleDetails'
+    VehicleBodyType:
+      $ref: './v1/schemas/vehicle.yaml#/components/schemas/VehicleBodyType'
 
   responses:
     BadRequest:
