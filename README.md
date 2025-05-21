@@ -40,6 +40,11 @@ The API is organized into two main versions (v1 and v2) and includes the followi
 - [Postman](https://www.postman.com/downloads/) installed on your machine
 - Access to the Optipix API endpoints
 
+### Accessing the Documentation
+
+You can access the complete API documentation directly in Postman through our workspace:
+[Optipix API Documentation](https://www.postman.com/adriaopticom/workspace/my-workspace/api/bc392794-387b-45f6-8c8a-b219be361c90?action=share&creator=41305983&active-environment=41305983-754dc4f4-d03e-421c-a191-4600ddf82404)
+
 ### Setting Up in Postman
 
 1. Clone this repository:
@@ -59,6 +64,17 @@ The API is organized into two main versions (v1 and v2) and includes the followi
    - Set the following variables:
      - `baseUrl`: The base URL of your API (e.g., `http://localhost:3000`)
      - `apiKey`: Your API key for authentication
+
+### Using the API
+
+1. Authentication:
+   - Use the `/login` endpoint to authenticate
+   - The API uses API Key authentication (X-Api-Key header)
+
+2. Making Requests:
+   - All endpoints are documented in the respective YAML files
+   - Request/response schemas are defined in the `schemas` directories
+   - Common responses (400, 401, 403, 404) are standardized
 
 ## Development
 
@@ -83,4 +99,8 @@ The API is organized into two main versions (v1 and v2) and includes the followi
 2. Make your modifications
 3. Test the changes in Postman
 4. Submit a pull request
+
+## License
+
+[Add your license information here]
 
