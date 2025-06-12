@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Vehicle Body Type API
+  version: 1.0.0
+  description: API for managing vehicle body types
+servers:
+  - url: http://localhost:3000/v1
+
+paths:
+  /vehicleBodyTypes:
+    get:
+      summary: Get all vehicle body types
+      description: Retrieves a list of all vehicle body types
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: List of vehicle body types retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: './schemas/vehicle.yaml#/components/schemas/VehicleBodyType'
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      pages:
+                        type: integer
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '401':
+          $ref: './common/responses.yaml#/responses/Unauthorized'
+
+  /vehicleBodyTypes/{vehicleBodyTypeId}:
+    get:
+      summary: Get vehicle body type details
+      description: Retrieves details of a specific vehicle body type
+      parameters:
+        - name: vehicleBodyTypeId
+          in: path
+          required: true
+          description: The ID of the vehicle body type
+          schema:
+            type: string
+            format: uuid
+            example: "1e03a16e-8275-4285-92e4-c80c87085399"
+      responses:
+        '200':
+          description: Vehicle body type details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/vehicle.yaml#/components/schemas/VehicleBodyType'
+        '400':
+          $ref: './common/responses.yaml#/responses/BadRequest'
+        '401':
+          $ref: './common/responses.yaml#/responses/Unauthorized'
+        '404':
+          $ref: './common/responses.yaml#/responses/NotFound' 

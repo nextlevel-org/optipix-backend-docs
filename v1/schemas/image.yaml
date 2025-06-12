@@ -1,0 +1,99 @@
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "1e03a16e-8275-4285-92e4-c80c87085399"
+        vehicleId:
+          type: string
+          format: uuid
+          example: "1e03a16e-8275-4285-92e4-c80c87085399"
+        url:
+          type: string
+          format: uri
+          example: "https://storage.example.com/images/123.jpg"
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          example: "completed"
+        metadata:
+          type: object
+          properties:
+            description:
+              type: string
+              example: "Front view of the vehicle"
+            tags:
+              type: array
+              items:
+                type: string
+              example: ["front", "exterior"]
+            width:
+              type: integer
+              example: 1920
+            height:
+              type: integer
+              example: 1080
+            format:
+              type: string
+              example: "jpeg"
+            size:
+              type: integer
+              example: 1024000
+        processingResult:
+          type: object
+          properties:
+            success:
+              type: boolean
+            error:
+              type: string
+            processedUrl:
+              type: string
+              format: uri
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - vehicleId
+        - url
+        - status
+        - createdAt
+        - updatedAt
+
+    ProcessImageRequest:
+      type: object
+      properties:
+        options:
+          type: object
+          properties:
+            resize:
+              type: object
+              properties:
+                width:
+                  type: integer
+                  example: 800
+                height:
+                  type: integer
+                  example: 600
+            quality:
+              type: integer
+              minimum: 1
+              maximum: 100
+              example: 85
+            format:
+              type: string
+              enum: [jpeg, png, webp]
+              example: "jpeg"
+            filters:
+              type: array
+              items:
+                type: string
+              example: ["brightness", "contrast"]
+      required:
+        - options 

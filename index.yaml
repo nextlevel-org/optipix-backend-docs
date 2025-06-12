@@ -23,17 +23,17 @@ paths:
   /clients/{clientId}/change-customer:
     $ref: './v1/client.yaml#/paths/~1clients~1{clientId}~1change-customer'
 
-  # # User paths
-  # /clients/{clientId}/users:
-  #   $ref: './user/user.yaml#/paths/~1clients~1{clientId}~1users'
-  # /users/{userId}:
-  #   $ref: './user/user.yaml#/paths/~1users~1{userId}'
-  # /users/{userId}/change-password:
-  #   $ref: './user/user.yaml#/paths/~1users~1{userId}~1change-password'
-  # /password/forgot:
-  #   $ref: './user/user.yaml#/paths/~1password~1forgot'
-  # /password/reset:
-  #   $ref: './user/user.yaml#/paths/~1password~1reset'
+  # User paths
+  /clients/{clientId}/users:
+    $ref: './v1/user.yaml#/paths/~1clients~1{clientId}~1users'
+  /users/{userId}:
+    $ref: './v1/user.yaml#/paths/~1users~1{userId}'
+  /users/{userId}/change-password:
+    $ref: './v1/user.yaml#/paths/~1users~1{userId}~1change-password'
+  /password/forgot:
+    $ref: './v1/user.yaml#/paths/~1password~1forgot'
+  /password/reset:
+    $ref: './v1/user.yaml#/paths/~1password~1reset'
 
   # Vehicle paths
   /users/{userId}/vehicles:
@@ -41,17 +41,27 @@ paths:
   /users/{userId}/vehicles/{vehicleId}:
     $ref: './v1/vehicle.yaml#/paths/~1users~1{userId}~1vehicles~1{vehicleId}'
 
-  # # Vehicle Details paths
-  # /vehicles:
-  #   $ref: './vehicleDetails.yaml#/paths/~1vehicles'
-  # /vehicles/{vehicleId}:
-  #   $ref: './vehicleDetails.yaml#/paths/~1vehicles~1{vehicleId}'
+  # Vehicle Details paths
+  /vehicles:
+    $ref: './v1/vehicleDetails.yaml#/paths/~1vehicles'
+  /vehicles/{vehicleId}:
+    $ref: './v1/vehicleDetails.yaml#/paths/~1vehicles~1{vehicleId}'
 
-  # # Vehicle Body Type paths
-  # /vehicleBodyTypes:
-  #   $ref: './vehicleBodyType.yaml#/paths/~1vehicleBodyTypes'
-  # /vehicleBodyTypes/{vehicleBodyTypeId}:
-  #   $ref: './vehicleBodyType.yaml#/paths/~1vehicleBodyTypes~1{vehicleBodyTypeId}'
+  # Vehicle Body Type paths
+  /vehicleBodyTypes:
+    $ref: './v1/vehicleBodyType.yaml#/paths/~1vehicleBodyTypes'
+  /vehicleBodyTypes/{vehicleBodyTypeId}:
+    $ref: './v1/vehicleBodyType.yaml#/paths/~1vehicleBodyTypes~1{vehicleBodyTypeId}'
+
+  # Image paths
+  /images:
+    $ref: './v1/image.yaml#/paths/~1images'
+  /images/{imageId}:
+    $ref: './v1/image.yaml#/paths/~1images~1{imageId}'
+  /images/upload:
+    $ref: './v1/image.yaml#/paths/~1images~1upload'
+  /images/{imageId}/process:
+    $ref: './v1/image.yaml#/paths/~1images~1{imageId}~1process'
 
   # Customer Settings paths
   /customers/{customerId}/settings:
@@ -99,6 +109,12 @@ components:
       $ref: './v1/schemas/vehicle.yaml#/components/schemas/VehicleDetails'
     VehicleBodyType:
       $ref: './v1/schemas/vehicle.yaml#/components/schemas/VehicleBodyType'
+
+    # Image schemas
+    Image:
+      $ref: './v1/schemas/image.yaml#/components/schemas/Image'
+    ProcessImageRequest:
+      $ref: './v1/schemas/image.yaml#/components/schemas/ProcessImageRequest'
 
   responses:
     BadRequest:

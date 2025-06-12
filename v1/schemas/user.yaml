@@ -11,31 +11,122 @@ components:
           type: string
           format: email
           example: "user@example.com"
-        name:
+        firstName:
           type: string
-          example: "John Doe"
-        status:
+          example: "John"
+        lastName:
           type: string
-          enum: [active, inactive]
-          example: "active"
-        roleId:
-          type: string
-          format: uuid
+          example: "Doe"
         role:
           $ref: '#/components/schemas/UserRole'
-
-    UserRole:
-      type: object
-      properties:
-        id:
+        clientId:
           type: string
           format: uuid
-        name:
+          example: "1e03a16e-8275-4285-92e4-c80c87085399"
+        createdAt:
           type: string
-          example: "user"
-        type:
+          format: date-time
+        updatedAt:
           type: string
-          example: "notVerified"
+          format: date-time
+      required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - role
+        - clientId
+
+    UserRole:
+      type: string
+      enum: [ADMIN, USER]
+      example: "USER"
+
+    CreateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        password:
+          type: string
+          format: password
+          example: "securePassword123"
+        role:
+          $ref: '#/components/schemas/UserRole'
+      required:
+        - email
+        - firstName
+        - lastName
+        - password
+        - role
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        role:
+          $ref: '#/components/schemas/UserRole'
+      required:
+        - email
+        - firstName
+        - lastName
+        - role
+
+    ChangePasswordRequest:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          format: password
+          example: "currentPassword123"
+        newPassword:
+          type: string
+          format: password
+          example: "newPassword123"
+      required:
+        - currentPassword
+        - newPassword
+
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+      required:
+        - email
+
+    ResetPasswordRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "reset-token-123"
+        newPassword:
+          type: string
+          format: password
+          example: "newPassword123"
+      required:
+        - token
+        - newPassword
 
     UserFile:
       type: object
