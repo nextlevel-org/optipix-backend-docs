@@ -56,7 +56,36 @@ The easiest way to deploy your documentation:
    - Your documentation will be available at: `https://[username].github.io/[repository-name]`
    - The GitHub Action will automatically build and deploy on every push
 
-### 2. Local Development
+### 2. Postman Documentation (Alternative)
+
+You can also publish and share your API documentation directly through Postman:
+
+1. **View in Postman**:
+   - Open your collection in Postman
+   - Click on the "..." (three dots) next to your collection
+   - Select "View Documentation"
+
+2. **Publish Documentation**:
+   - Click the "Publish" button in the documentation view
+   - Choose your visibility settings:
+     - Private (Team only)
+     - Public (Anyone with link)
+     - Partner (Specific partners)
+   - Configure additional settings:
+     - Environment templates
+     - Custom domains (with Postman Enterprise)
+     - Version tags
+
+3. **Share Documentation**:
+   - Copy the published documentation URL
+   - Share with your team or integrate into your developer portal
+   - Documentation updates automatically when you update your collection
+
+4. **Current Documentation**:
+   Access the current API documentation in Postman:
+   [Optipix API Documentation](https://www.postman.com/adriaopticom/workspace/my-workspace/api/bc392794-387b-45f6-8c8a-b219be361c90)
+
+### 3. Local Development
 
 You have two options for local development:
 
@@ -97,11 +126,6 @@ The Docker option provides a consistent environment and uses the official Swagge
 ### Prerequisites
 - [Postman](https://www.postman.com/downloads/) installed on your machine
 - Access to the Optipix API endpoints
-
-### Accessing the Documentation
-
-You can access the complete API documentation directly in Postman through our workspace:
-[Optipix API Documentation](https://www.postman.com/adriaopticom/workspace/my-workspace/api/bc392794-387b-45f6-8c8a-b219be361c90?action=share&creator=41305983&active-environment=41305983-754dc4f4-d03e-421c-a191-4600ddf82404)
 
 ### Setting Up in Postman
 
