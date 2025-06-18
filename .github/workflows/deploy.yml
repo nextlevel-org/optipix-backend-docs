@@ -1,15 +1,37 @@
 name: Deploy OpenAPI Documentation
 
 on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: choice
+        required: true
+        default: 'github-pages'
+        options:
+        - github-pages
+  # Automatic trigger on push
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+# Add permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    
+    # Environment for GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
     - uses: actions/checkout@v4
@@ -48,7 +70,7 @@ jobs:
             <script>
                 window.onload = function() {
                     const ui = SwaggerUIBundle({
-                        url: '../index.yaml',
+                        url: './index.yaml',
                         dom_id: '#swagger-ui',
                         deepLinking: true,
                         presets: [
@@ -65,9 +87,20 @@ jobs:
         </body>
         </html>
         EOF
+        
+        # Copy OpenAPI files
+        cp index.yaml docs/
+        cp -r v1 docs/
+        cp -r v2 docs/
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './docs'
     
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs 
+      id: deployment
+      uses: actions/deploy-pages@v4 
