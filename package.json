@@ -1,0 +1,17 @@
+{
+  "name": "optipix-api-docs",
+  "version": "1.0.0",
+  "description": "Optipix Backend API Documentation",
+  "scripts": {
+    "build-docs": "node scripts/build-docs.js",
+    "serve-docs": "npx http-server docs -p 8080",
+    "validate": "npx swagger-cli validate index.yaml"
+  },
+  "devDependencies": {
+    "swagger-cli": "^4.0.4",
+    "http-server": "^14.1.1"
+  },
+  "keywords": ["openapi", "swagger", "api", "documentation"],
+  "author": "Optipix Team",
+  "license": "MIT"
+} 

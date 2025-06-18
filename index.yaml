@@ -5,8 +5,8 @@ info:
   description: Complete API documentation with external references
 
 servers:
-  - url: http://localhost:3000/v1
-  - url: http://localhost:3000/v2
+  - url: https://api.optipix.eu/v1
+  - url: https://api.optipix.eu/v2
 
 paths:
   # Auth paths

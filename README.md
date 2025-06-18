@@ -34,6 +34,64 @@ The API is organized into two main versions (v1 and v2) and includes the followi
 ### Version 2 (v2)
 - Customer Management (`/v2/customers`)
 
+## 🚀 Deployment Options
+
+### 1. GitHub Pages (Recommended)
+
+The easiest way to deploy your documentation:
+
+1. **Enable GitHub Pages**:
+   - Go to your repository settings
+   - Navigate to "Pages"
+   - Select "GitHub Actions" as source
+
+2. **Push to main branch**:
+   ```bash
+   git add .
+   git commit -m "Add deployment configuration"
+   git push origin main
+   ```
+
+3. **Access your docs**:
+   - Your documentation will be available at: `https://[username].github.io/[repository-name]`
+   - The GitHub Action will automatically build and deploy on every push
+
+### 2. Local Development
+
+You have two options for local development:
+
+#### Option A: Using npm (Simple)
+
+```bash
+# Install dependencies
+npm install
+
+# Build documentation
+npm run build-docs
+
+# Serve locally
+npm run serve-docs
+
+# Validate OpenAPI spec
+npm run validate
+```
+
+Access your local documentation at: `http://localhost:8080`
+
+#### Option B: Using Docker (Recommended)
+
+```bash
+# Start Swagger UI container
+docker-compose up -d
+
+# Stop the container
+docker-compose down
+```
+
+Access your local documentation at: `http://localhost:8080`
+
+The Docker option provides a consistent environment and uses the official Swagger UI container.
+
 ## Getting Started
 
 ### Prerequisites
@@ -62,7 +120,7 @@ You can access the complete API documentation directly in Postman through our wo
 3. Configure your environment:
    - Create a new environment in Postman
    - Set the following variables:
-     - `baseUrl`: The base URL of your API (e.g., `http://localhost:3000`)
+     - `baseUrl`: The base URL of your API (e.g., `https://api.optipix.eu`)
      - `apiKey`: Your API key for authentication
 
 ### Using the API

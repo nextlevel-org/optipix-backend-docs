@@ -4,7 +4,7 @@ info:
   version: 2.0.0
   description: API for managing customers
 servers:
-  - url: http://localhost:3000/v2
+  - url: https://api.optipix.eu/v2
 paths:
   /customers:
     get:

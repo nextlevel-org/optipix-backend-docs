@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for managing vehicles
 servers:
-  - url: http://localhost:3000/v1
+  - url: https://api.optipix.eu/v1
 paths:
   /users/{userId}/vehicles:
     post:

@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for managing images and image-related operations
 servers:
-  - url: http://localhost:3000/v1
+  - url: https://api.optipix.eu/v1
 
 paths:
   /images:
